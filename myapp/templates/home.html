@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello My World</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --secondary: #06b6d4;
+            --dark-bg: #0f172a;
+            --light-text: #e6eef8;
+        }
+        
+        html, body {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(124, 58, 237, 0.12), transparent),
+                        radial-gradient(900px 500px at 90% 90%, rgba(6, 182, 212, 0.08), transparent),
+                        linear-gradient(180deg, var(--dark-bg), #1e293b);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .hero-card {
+            width: 100%;
+            max-width: 900px;
+            padding: 3rem;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px) saturate(120%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInDown 0.6s ease-out;
+            letter-spacing: -0.02em;
+        }
+        
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .lead-text {
+            font-size: 1.15rem;
+            color: rgba(230, 238, 248, 0.8);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .btn-primary-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 0.85rem 2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+        
+        .btn-primary-gradient:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.35);
+            color: white;
+        }
+        
+        .btn-outline-light-custom {
+            border: 2px solid rgba(230, 238, 248, 0.3);
+            color: var(--light-text);
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out 0.5s both;
+        }
+        
+        .btn-outline-light-custom:hover {
+            background: rgba(230, 238, 248, 0.1);
+            border-color: var(--secondary);
+            transform: translateY(-4px);
+            color: var(--light-text);
+        }
+        
+        .features {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: rgba(230, 238, 248, 0.9);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-card {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-card">
+        <h1>Hello Kitisak</h1>
+        <p class="lead-text">ยินดีต้อนรับสู่โลกแห่งการพัฒนา — ออกแบบให้เด่น สะดุดตา และพร้อมขยายต่อ</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <button class="btn btn-primary-gradient">🚀 เริ่มใช้งาน</button>
+            <button class="btn btn-outline-light-custom">📚 เรียนรู้เพิ่มเติม</button>
+        </div>
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">รวดเร็ว</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">สวยงาม</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔧</div>
+                <div class="feature-title">ปรับแต่งได้</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
