@@ -5,6 +5,8 @@ from .forms import UserRegisterForm  # นำเข้า UserRegisterForm ท�
 from django.contrib import messages  # นำเข้า messages จาก django.contrib เพื่อใช้ในการแสดงข้อความแจ้งเตือนต่างๆ เช่น เมื่อผู้ใช้ลงทะเบียนสำเร็จ หรือเกิดข้อผิดพลาดในการกรอกข้อมูลในฟอร์มลงทะเบียน เป็นต้น
 from django.shortcuts import redirect  # นำเข้า redirect จาก django.shortcuts เพื่อใช้ในการเปลี่ยนเส้นทางผู้ใช้ไปยังหน้าอื่นหลังจากที่ทำการลงทะเบียนสำเร็จ หรือเมื่อเกิดข้อผิดพลาดในการกรอกข้อมูลในฟอร์มลงทะเบียน เป็นต้น
 from django.contrib.auth import authenticate, login as auth_login  # นำเข้า authenticate และ login จาก django.contrib.auth เพื่อใช้ในการยืนยันตัวตนและเข้าสู่ระบบ
+from django.contrib.auth import logout as auth_logout  # นำเข้า logout จาก django.contrib.auth เพื่อใช้ในการออกจากระบบ
+from django.contrib.auth.decorators import login_required  # นำเข้า login_required จาก django.contrib.auth.decorators เพื่อใช้ในการจำกัดการเข้าถึงฟังก์ชันหรือหน้าเว็บบางหน้าให้เฉพาะผู้ใช้ที่เข้าสู่ระบบแล้วเท่านั้น โดยถ้าผู้ใช้ยังไม่ได้เข้าสู่ระบบจะถูกเปลี่ยนเส้นทางไปยังหน้า login โดยอัตโนมัติ
 
 def home(request):
     return render(request, 'home.html')   # localhost:8000/ -> home.html
@@ -46,3 +48,12 @@ def login(request):
     
     return render(request, 'login.html')  # แสดงหน้า login
 
+@login_required  # ใช้ login_required decorator เพื่อให้ฟังก์ชัน logout สามารถเข้าถึงได้เฉพาะผู้ใช้ที่เข้าสู่ระบบแล้วเท่านั้น ถ้าผู้ใช้ยังไม่ได้เข้าสู่ระบบจะถูกเปลี่ยนเส้นทางไปยังหน้า login โดยอัตโนมัติ
+def logout(request):
+    auth_logout(request)  # ทำการออกจากระบบ
+    messages.success(request, 'คุณได้ออกจากระบบแล้ว')  # แสดงข้อความแจ้งเตือนเมื่อออกจากระบบสำเร็จ
+    return redirect('login')  # เปลี่ยนเส้นทางผู้ใช้ไปยังหน้า login หลังจากที่ทำการออกจากระบบสำเร็จ
+
+@login_required  # ใช้ login_required decorator เพื่อให้ฟังก์ชัน profile สามารถเข้าถึงได้เฉพาะผู้ใช้ที่เข้าสู่ระบบแล้วเท่านั้น ถ้าผู้ใช้ยังไม่ได้เข้าสู่ระบบจะถูกเปลี่ยนเส้นทางไปยังหน้า login โดยอัตโนมัติ
+def profile(request):
+    return render(request, 'profile.html')  # แสดงหน้า profile
